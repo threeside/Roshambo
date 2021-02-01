@@ -1,21 +1,32 @@
 package roshambo;
 
 import java.util.Scanner;
+import javafx.application.Application; 
+import javafx.scene.Scene; 
+import javafx.scene.control.Button; 
+import javafx.scene.layout.*; 
+import javafx.event.ActionEvent; 
+import javafx.event.EventHandler;
+import javafx.scene.shape.*; 
+import javafx.scene.control.*; 
+import javafx.stage.Stage; 
+import javafx.scene.Group;
+import javafx.scene.transform.*;
+
 
 /**
  *
  * @author tjohn
  */
-public class Roshambo {
+public class Roshambo extends RoshamboView{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public void start(Stage primaryStage) throws Exception { 
         
-
-        //Get user input
-        Scanner in =  new Scanner(System.in);
+        //Calls RoshamboView's start method
+        super.start(primaryStage);      
         
         //Score variables
         int wins = 0;
@@ -24,23 +35,15 @@ public class Roshambo {
         
         
         //Loop to keep asking user to play
-        while(true){
-            
-            System.out.print("Enter your move. Type rock, paper, or scissors. If you want to quit the game"
-                    + "type in quit: ");
-            String myMove = in.nextLine();
-
+        while(myMove != 3){
+          
 
             //Check if user entered quit
-            if(myMove.equals("quit")){
+            if(myMove == 3){
+                System.out.println("It is 3");
                 break;
             }
             
-            //Verify that my move is valid
-            if (!myMove.equals("rock") && !myMove.equals("paper") && !myMove.equals("scissors")){
-                System.out.println("Your move isn't valid!");
-            } else{
-                
                 //Randomly generate the opponents move
                 int rand = (int)(Math.random() * 3);
 
@@ -54,7 +57,7 @@ public class Roshambo {
                     case 1:
                         opponentMove = "paper";
                     break;
-                    case 3:
+                    case 2:
                         opponentMove = "scissors";
                     break;
                 }
@@ -62,13 +65,13 @@ public class Roshambo {
                 System.out.println("Opponent move: " + opponentMove);
 
                 //Calculate if the user won, lost, or tied
-                if(myMove.equals(opponentMove)){
+                if(false){
                     System.out.println("You tied!");
                     ties += 1;
                 }
-                else if((myMove.equals("rock") && opponentMove.equals("scissors"))
-                || (myMove.equals("scissors") && opponentMove.equals("paper"))
-                || (myMove.equals("paper") && opponentMove.equals("scissors"))){
+                else if((myMove == 0 && opponentMove.equals("scissors"))
+                || (myMove == 2 && opponentMove.equals("paper"))
+                || (myMove == 1 && opponentMove.equals("scissors"))){
                     System.out.println("You won!");
                     wins += 1;
                 } else {
@@ -76,11 +79,20 @@ public class Roshambo {
                     losses += 1;
                 }
             }
-        }
+        
+            
+    }
         
         //Print out the results
+        /*
         System.out.println("Your score was, \nwins: " + wins + "\nlosses: " + losses + "\nties: " + ties);
         System.out.println("Thanks for playing!");
-    }
+        */
     
+    
+    public static void main(String[] args){
+        Application.launch(args);
+    }
+
 }
+    
