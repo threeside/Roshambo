@@ -40,10 +40,6 @@ public class Roshambo extends RoshamboView{
           
 
         while(true){
-            
-            System.out.print("Enter your move. Type rock, paper, or scissors. If you want to quit the game "
-                    + "type in quit: ");
-            String myMove = in.nextLine();
 
             //Check if user entered quit
             if(myMove == 3){
