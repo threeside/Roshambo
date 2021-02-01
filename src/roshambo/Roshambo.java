@@ -26,7 +26,7 @@ public class Roshambo {
         //Loop to keep asking user to play
         while(true){
             
-            System.out.print("Enter your move. Type rock, paper, or scissors. If you want to quit the game"
+            System.out.print("Enter your move. Type rock, paper, or scissors. If you want to quit the game "
                     + "type in quit: ");
             String myMove = in.nextLine();
 
