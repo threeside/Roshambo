@@ -9,6 +9,7 @@ package roshambo;
  *
  * @author Daniel
  */
+
 public class RoshamboGame {
     
     private static final String[] RPS_MOVES = {"rock", "paper", "scissors"};
@@ -79,6 +80,7 @@ public class RoshamboGame {
         ++gameTies;
         
         System.out.println("You tied!");
+        System.out.println(gameTies);
     }
     
     private void p1HasWon() {
@@ -89,6 +91,7 @@ public class RoshamboGame {
         ++p2_gameLosses;
         
         System.out.println("You have won!");
+        System.out.println(p1_gameWins);
     }
     
     private void p2HasWon() {

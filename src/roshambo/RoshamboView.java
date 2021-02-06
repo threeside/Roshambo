@@ -9,6 +9,7 @@ import java.util.Scanner;
 import javafx.application.Application; 
 import javafx.scene.Scene; 
 import javafx.scene.control.Button; 
+import javafx.scene.text.Text;
 import javafx.scene.layout.*; 
 import javafx.event.ActionEvent; 
 import javafx.event.EventHandler;
@@ -28,12 +29,18 @@ public class RoshamboView extends Application {
     protected static int myMove = 0;
     
     Button b1, b2, b3, b4;
+    Text w, l, t;
     
     public RoshamboView() {
+    
     b1 = new Button("Rock");
     b2 = new Button("Paper");
     b3 = new Button("Scissors");
     b4 = new Button("Quit");
+    
+    w = new Text("Win: ");
+    l = new Text("Loss: ");
+    t = new Text("Tie: ");
     
     b1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
     b2.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -53,6 +60,9 @@ public class RoshamboView extends Application {
         grid.add(b2, 0, 1);
         grid.add(b3, 1, 0);
         grid.add(b4, 1, 1);
+        grid.add(w, 0, 2);
+        grid.add(l, 1, 2);
+        grid.add(t, 2, 2);
         
    
         //Establish the scene which allows you to place buttons
