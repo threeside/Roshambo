@@ -23,77 +23,43 @@ import javafx.scene.transform.*;
  * @author tjohn
  */
 public class RoshamboView extends Application {
-    
+   
     
     protected static int myMove = 0;
     
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Roshambo");
-
-        GridPane grid = new GridPane();
-        
-        //Event handlers to assign the button presses an action
-        EventHandler<ActionEvent> rock = new EventHandler<ActionEvent>(){
-          public void handle(ActionEvent E){
-              System.out.println("rock");
-              myMove = 0;
-            }
-        };
-        EventHandler<ActionEvent> paper = new EventHandler<ActionEvent>(){
-          public void handle(ActionEvent E){
-              System.out.println("paper");
-              myMove = 1;
-            }
-        };
-        EventHandler<ActionEvent> scissors = new EventHandler<ActionEvent>(){
-          public void handle(ActionEvent E){
-              System.out.println("scissors");
-              myMove = 2;
-            }
-        };
-        EventHandler<ActionEvent> quit = new EventHandler<ActionEvent>(){
-          public void handle(ActionEvent E){
-              myMove = 3;
-              System.out.println(myMove);
-            }
-        };
-        
-        
-        //Establish buttons, sizes, and location on grids
-        Button b1 = new Button("Rock");
-        b1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        grid.add(b1, 0, 0);
-        //Set the action for the handler to process
-        b1.setOnAction(rock);
-        
+    Button b1, b2, b3, b4;
     
-        //Establish buttons, sizes, and location on grids
-        Button b2 = new Button("Paper");
-        b2.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    public RoshamboView() {
+    b1 = new Button("Rock");
+    b2 = new Button("Paper");
+    b3 = new Button("Scissors");
+    b4 = new Button("Quit");
+    
+    b1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    b2.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    b3.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    b4.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    
+    }
+    
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        
+        primaryStage.setTitle("Roshambo");
+        GridPane grid = new GridPane();
+
+        
+        grid.add(b1, 0, 0);
         grid.add(b2, 0, 1);
-        //Set the action for the handler to process
-        b2.setOnAction(paper);
-
-        
-        //Establish buttons, sizes, and location on grids
-        Button b3 = new Button("Scissors");
-        b3.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         grid.add(b3, 1, 0);
-        //Set the action for the handler to process
-        b3.setOnAction(scissors);
-
-        
-        //Establish buttons, sizes, and location on grids
-        Button b4 = new Button("Quit");
-        b4.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         grid.add(b4, 1, 1);
-        //Set the action for the handler to process
-        b4.setOnAction(quit);
-
-
+        
+   
+        //Establish the scene which allows you to place buttons
         Scene scene = new Scene(grid, 200, 100);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    
+   
 }
