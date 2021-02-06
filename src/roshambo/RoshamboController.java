@@ -5,25 +5,12 @@
  */
 package roshambo;
 
-import java.util.Scanner;
-import javafx.application.Application; 
-import javafx.scene.Scene; 
-import javafx.scene.control.Button; 
-import javafx.scene.layout.*; 
-import javafx.event.ActionEvent;
-import javafx.event.ActionListener;
-import javafx.event.EventHandler;
-import javafx.scene.shape.*; 
-import javafx.scene.control.*; 
-import javafx.stage.Stage; 
-import javafx.scene.Group;
-import javafx.scene.transform.*;
 
 /**
  *
  * @author Daniel
  */
-public class RoshamboController implements ActionListener{
+public class RoshamboController{
     
     private int currentMove, totalWins, totalTies, totalLosses;
     
