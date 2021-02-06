@@ -24,6 +24,7 @@ public class Roshambo extends RoshamboView{
     static int ties = 0;
     static int wins = 0;
     static int losses = 0;
+    static int opMove;
     
     public void start(Stage primaryStage) throws Exception { 
         
@@ -37,31 +38,33 @@ public class Roshambo extends RoshamboView{
         EventHandler<ActionEvent> rock = new EventHandler<ActionEvent>(){
           public void handle(ActionEvent E){
               System.out.println("Your move: rock");
-              myMove = 0;
+              battle(0);
               
-              opponentMove();
+              opMove = opponentMove();
+             
             }
         };
         EventHandler<ActionEvent> paper = new EventHandler<ActionEvent>(){
           public void handle(ActionEvent E){
               System.out.println("Your move: paper");
-              myMove = 1;
+              battle(1);
+
               
-              opponentMove();
+              opMove = opponentMove();
             }
         };
         EventHandler<ActionEvent> scissors = new EventHandler<ActionEvent>(){
           public void handle(ActionEvent E){
               System.out.println("Your move: scissors");
-              myMove = 2;
+              battle(2);
               
-              opponentMove();
+              opMove = opponentMove();
             }
         };
         EventHandler<ActionEvent> quit = new EventHandler<ActionEvent>(){
           public void handle(ActionEvent E){
               myMove = 3;
-              System.out.println(myMove);
+              System.exit(0); 
              
             }
         };
@@ -84,8 +87,7 @@ public class Roshambo extends RoshamboView{
  
         //Set the action for the handler to process
         b4.setOnAction(quit);
-        
-            
+      
     }
        
     
@@ -101,44 +103,28 @@ public class Roshambo extends RoshamboView{
         */
     }
     
-    static String opponentMove(){
+    static int opponentMove(){
         
         //Randomly generate the opponents move
-        int rand = (int)(Math.random() * 3);
-
-        String opponentMove = "";
-
-        //Assigns the value in opponentMove
-        switch(rand){
-            case 0:
-                opponentMove = "rock";
-            break;
-            case 1:
-                opponentMove = "paper";
-            break;
-            case 2:
-                opponentMove = "scissors";
-            break;
-        }
-
-        System.out.println("Opponent move: " + opponentMove);
-
-        //Calculate if the user won, lost, or tied
-        if(false){
-            System.out.println("You tied!");
-            ties += 1;
-        }
-        else if((myMove == 0 && opponentMove.equals("scissors"))
-        || (myMove == 2 && opponentMove.equals("paper"))
-        || (myMove == 1 && opponentMove.equals("scissors"))){
-            System.out.println("You won!");
-            wins += 1;
-        } else {
-            System.out.println("You lost!");
-            losses += 1;
-        }
-        
+        int opponentMove = (int)(Math.random() * 3);
         return opponentMove;
+    }
+    
+    static void battle(int playerMove){
+        
+        RoshamboController p1 = new RoshamboController();
+        RoshamboController p2 = new RoshamboController();
+        
+        RoshamboGame game = new RoshamboGame (p1, p2);
+        
+        
+        p1.setMove(playerMove);
+        p2.setMove(opMove);
+        
+        System.out.println("Opponent move: " + RoshamboGame.getMoveNameFromId(opMove));
+        
+        game.startBattle();
+        
     }
    
 

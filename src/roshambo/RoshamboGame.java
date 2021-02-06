@@ -77,6 +77,8 @@ public class RoshamboGame {
         p2.acceptTie();
         
         ++gameTies;
+        
+        System.out.println("You tied!");
     }
     
     private void p1HasWon() {
@@ -85,6 +87,8 @@ public class RoshamboGame {
         
         ++p1_gameWins;
         ++p2_gameLosses;
+        
+        System.out.println("You have won!");
     }
     
     private void p2HasWon() {
@@ -93,6 +97,8 @@ public class RoshamboGame {
         
         ++p1_gameLosses;
         ++p2_gameWins;
+        
+        System.out.println("You have lost!");
     }
     
     public static String getMoveNameFromId(int moveId) {
