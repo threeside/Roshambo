@@ -50,8 +50,8 @@ public class RoshamboGame {
             }
         
             // otherwise, did player 1 win?
-            else if ((p1.getCurrentMove() > p2.getCurrentMove() && p2.getCurrentMove() != 0) || (p1.getCurrentMove() == 0 && p1.getCurrentMove()+1 == RPS_MOVES.length)) {
-                p1HasWon();
+            else if (p1.getCurrentMove() == ((p2.getCurrentMove()+1) % RPS_MOVES.length)) {
+                 p1HasWon();
             }
         
             // else, player 2 won
