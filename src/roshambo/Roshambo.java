@@ -21,9 +21,9 @@ import javafx.scene.transform.*;
 public class Roshambo extends RoshamboView{
     
     //Score variables
-    static int ties = 0;
-    static int wins = 0;
-    static int losses = 0;
+    public static int ties = 0;
+    public static int wins = 0;
+    public static int losses = 0;
     static int opMove;
     
     public void start(Stage primaryStage) throws Exception { 
@@ -34,6 +34,8 @@ public class Roshambo extends RoshamboView{
     
         primaryStage.setTitle("Roshambo");
         
+        
+        
         //Event handlers to assign the button presses an action
         EventHandler<ActionEvent> rock = new EventHandler<ActionEvent>(){
           public void handle(ActionEvent E){
@@ -41,7 +43,7 @@ public class Roshambo extends RoshamboView{
               battle(0);
               
               opMove = opponentMove();
-             
+           
             }
         };
         EventHandler<ActionEvent> paper = new EventHandler<ActionEvent>(){
@@ -51,6 +53,7 @@ public class Roshambo extends RoshamboView{
 
               
               opMove = opponentMove();
+              
             }
         };
         EventHandler<ActionEvent> scissors = new EventHandler<ActionEvent>(){
@@ -59,6 +62,7 @@ public class Roshambo extends RoshamboView{
               battle(2);
               
               opMove = opponentMove();
+              
             }
         };
         EventHandler<ActionEvent> quit = new EventHandler<ActionEvent>(){
@@ -116,16 +120,30 @@ public class Roshambo extends RoshamboView{
         RoshamboController p2 = new RoshamboController();
         
         RoshamboGame game = new RoshamboGame (p1, p2);
-        
-        
+       
+        //Set player and opponents moves
         p1.setMove(playerMove);
         p2.setMove(opMove);
         
+        //Display opponents move in output window
         System.out.println("Opponent move: " + RoshamboGame.getMoveNameFromId(opMove));
         
         game.startBattle();
         
+        //Update score variables
+        wins += game.getP1_gameWins();
+        losses += game.getP1_gameLosses();
+        ties += game.getGameTies();
+       
+        //Update the label text in order to display score
+        w.setText("Win: " + wins);
+        l.setText("Loss: " + losses);
+        t.setText("Tie: " + ties);
+        opm.setText(RoshamboGame.getMoveNameFromId(opMove));
+        System.out.println("Your score is, \nwins: " + wins + "\nlosses: " + losses + "\nties: " + ties);
+        
     }
+
    
 
 }
