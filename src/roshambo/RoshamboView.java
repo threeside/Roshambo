@@ -9,6 +9,8 @@ import java.util.Scanner;
 import javafx.application.Application; 
 import javafx.scene.Scene; 
 import javafx.scene.control.Button; 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.layout.*; 
 import javafx.event.ActionEvent; 
@@ -33,6 +35,7 @@ public class RoshamboView extends Application {
     
     Button b1, b2, b3, b4;
     public static Label w, l, t, op, opm;
+    Image rock, paper, scissors;
     
     private static RoshamboController p1 = new RoshamboController();
     private static RoshamboController p2 = new RoshamboController();
@@ -52,19 +55,19 @@ public class RoshamboView extends Application {
     l = new Label("Loss: " + score.getP1_gameLosses());
     t = new Label("Tie: " + score.getGameTies());
     op = new Label("Opponent Move: ");
-    opm = new Label();
-   
+    opm = new Label();   
     
     
-    b1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-    b2.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-    b3.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-    b4.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    b1.setPrefSize(200, 100);
+    b2.setPrefSize(200, 100);
+    b3.setPrefSize(200, 100);
+    b4.setPrefSize(200, 100);
     
-    w.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-    l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-    t.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-    op.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    w.setPrefSize(200, 100);
+    l.setPrefSize(200, 100);
+    t.setPrefSize(200, 100);
+    op.setPrefSize(200, 100);
+    opm.setPrefSize(200, 100);
     
     
     }
@@ -88,7 +91,7 @@ public class RoshamboView extends Application {
         
    
         //Establish the scene which allows you to place buttons
-        Scene scene = new Scene(grid, 200, 100);
+        Scene scene = new Scene(grid, 600, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -12,11 +12,7 @@ package roshambo;
 
 public class RoshamboGame {
     
-    
-    /*I put those spaces before Rock, Paper, and Scissors to center the text in the output window. I am unsure if there is a better way to center the labels as
-    Everything I have tried did not work.
-    */
-    private static final String[] RPS_MOVES = {"         Rock", "         Paper", "        Scissors"};
+    private static final String[] RPS_MOVES = {"Rock", "Paper", "Scissors"};
 
     RoshamboController p1, p2;
     private int p1_gameWins, p1_gameLosses, p2_gameWins, p2_gameLosses, gameTies;
