@@ -4,14 +4,13 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import java.util.*;
 
 public class Roshambo extends RoshamboView {
     
-    //Score variables
-    public static int ties = 0;
-    public static int wins = 0;
-    public static int losses = 0;
-    static int opMove;
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
     
     @Override
     public void start(Stage primaryStage) throws Exception { 
@@ -20,44 +19,48 @@ public class Roshambo extends RoshamboView {
         
         primaryStage.setTitle("Roshambo");
         
-        //Event handlers to assign the button presses an action
-        EventHandler<ActionEvent> rock = new EventHandler<ActionEvent>(){
-          public void handle(ActionEvent E){
-              System.out.println("Your move: rock");
-              battle(0);
-              
-              opMove = opponentMove();
-           
+        RoshamboController p1 = new RoshamboController(); // Player 1
+        RoshamboController p2 = new RoshamboController(); // Computer player
+        
+        RoshamboGame game = new RoshamboGame (p1, p2);
+        
+        EventHandler<ActionEvent> rock = new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent E){
+                //System.out.println("Your move: rock");
+                battle(game, 0);
             }
+            
         };
         
-        EventHandler<ActionEvent> paper = new EventHandler<ActionEvent>(){
-          public void handle(ActionEvent E){
-              System.out.println("Your move: paper");
-              battle(1);
-
-              
-              opMove = opponentMove();
-              
+        EventHandler<ActionEvent> paper = new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent E){
+                //System.out.println("Your move: paper");
+                battle(game, 1);
             }
+            
         };
         
-        EventHandler<ActionEvent> scissors = new EventHandler<ActionEvent>(){
-          public void handle(ActionEvent E){
-              System.out.println("Your move: scissors");
-              battle(2);
-              
-              opMove = opponentMove();
-              
+        EventHandler<ActionEvent> scissors = new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent E){
+                //System.out.println("Your move: scissors");
+                battle(game, 2);
             }
+        
         };
         
-        EventHandler<ActionEvent> quit = new EventHandler<ActionEvent>(){
-          public void handle(ActionEvent E){
-              myMove = 3;
-              System.exit(0); 
-             
+        EventHandler<ActionEvent> quit = new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent E) {
+                System.exit(0); 
             }
+            
         };
           
         b1.setOnAction(rock);
@@ -66,50 +69,46 @@ public class Roshambo extends RoshamboView {
         b4.setOnAction(quit);
       
     }
-       
     
-    public static void main(String[] args){
-       
-        Application.launch(args);
-        
+    /**
+     * Randomly generates a roshambo move
+     * @return generated move ID
+     */
+    public static int randomMove() {
+        return (new Random(System.currentTimeMillis()).nextInt(3));
     }
     
-    static int opponentMove(){
-        
-        //Randomly generate the opponents move
-        int opponentMove = (int)(Math.random() * 3);
-        return opponentMove;
+    /**
+     * Starts battle from game and P1 move
+     * @param game
+     * @param p1Move 
+     */
+    protected void battle(RoshamboGame game, int p1Move) {
+        battle(game, p1Move, randomMove());
     }
     
-    static void battle(int playerMove){
-        
-        RoshamboController p1 = new RoshamboController();
-        RoshamboController p2 = new RoshamboController();
-        
-        RoshamboGame game = new RoshamboGame (p1, p2);
+    /**
+     * Starts battle from game, P1 move, and AI move
+     * @param game
+     * @param p1Move
+     * @param AI_Move 
+     */
+    protected void battle(RoshamboGame game, int p1Move, int AI_Move) {
        
-        //Set player and opponents moves
-        p1.setMove(playerMove);
-        p2.setMove(opMove);
-        
-        //Display opponents move in output window
-        System.out.println("Opponent move: " + RoshamboGame.getMoveNameFromId(opMove));
+        // Set player and opponents moves
+        game.getP1().setMove(p1Move);
+        game.getP2().setMove(AI_Move);
         
         game.startBattle();
-        
-        //Update score variables
-        wins += game.getP1_gameWins();
-        losses += game.getP1_gameLosses();
-        ties += game.getGameTies();
        
-        //Update the label text in order to display score
-        w.setText("Win: " + wins);
-        l.setText("Loss: " + losses);
-        t.setText("Tie: " + ties);
-        opm.setText(RoshamboGame.getMoveNameFromId(opMove));
-        System.out.println("Your score is, \nwins: " + wins + "\nlosses: " + losses + "\nties: " + ties);
+        // Update the label text in order to display score
+        w.setText("Win: " + game.getP1_gameWins());
+        l.setText("Loss: " + game.getP1_gameLosses());
+        t.setText("Tie: " + game.getGameTies());
+        opm.setText(RoshamboGame.getMoveNameFromId(AI_Move));
         
+        // System.out.println("Opponent move: " + RoshamboGame.getMoveNameFromId(AI_Move));
+        // System.out.println("Your score is, \nwins: " + wins + "\nlosses: " + losses + "\nties: " + ties);
     }
 
 }
-    
