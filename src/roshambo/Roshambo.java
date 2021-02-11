@@ -1,24 +1,11 @@
 package roshambo;
 
-import java.util.Scanner;
-import javafx.application.Application; 
-import javafx.scene.Scene; 
-import javafx.scene.control.Button; 
-import javafx.scene.layout.*; 
-import javafx.event.ActionEvent; 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.shape.*; 
-import javafx.scene.control.*; 
-import javafx.stage.Stage; 
-import javafx.scene.Group;
-import javafx.scene.transform.*;
+import javafx.stage.Stage;
 
-
-/**
- *
- * @author tjohn
- */
-public class Roshambo extends RoshamboView{
+public class Roshambo extends RoshamboView {
     
     //Score variables
     public static int ties = 0;
@@ -26,15 +13,12 @@ public class Roshambo extends RoshamboView{
     public static int losses = 0;
     static int opMove;
     
+    @Override
     public void start(Stage primaryStage) throws Exception { 
         
-        //Calls RoshamboView's start method
         super.start(primaryStage);   
         
-    
         primaryStage.setTitle("Roshambo");
-        
-        
         
         //Event handlers to assign the button presses an action
         EventHandler<ActionEvent> rock = new EventHandler<ActionEvent>(){
@@ -46,6 +30,7 @@ public class Roshambo extends RoshamboView{
            
             }
         };
+        
         EventHandler<ActionEvent> paper = new EventHandler<ActionEvent>(){
           public void handle(ActionEvent E){
               System.out.println("Your move: paper");
@@ -56,6 +41,7 @@ public class Roshambo extends RoshamboView{
               
             }
         };
+        
         EventHandler<ActionEvent> scissors = new EventHandler<ActionEvent>(){
           public void handle(ActionEvent E){
               System.out.println("Your move: scissors");
@@ -65,6 +51,7 @@ public class Roshambo extends RoshamboView{
               
             }
         };
+        
         EventHandler<ActionEvent> quit = new EventHandler<ActionEvent>(){
           public void handle(ActionEvent E){
               myMove = 3;
@@ -73,23 +60,9 @@ public class Roshambo extends RoshamboView{
             }
         };
           
-        //Set the action for the handler to process
         b1.setOnAction(rock);
-        
-    
-  
-        
-        //Set the action for the handler to process
         b2.setOnAction(paper);
-
- 
-
-        //Set the action for the handler to process
         b3.setOnAction(scissors);
-
-        
- 
-        //Set the action for the handler to process
         b4.setOnAction(quit);
       
     }
@@ -99,12 +72,6 @@ public class Roshambo extends RoshamboView{
        
         Application.launch(args);
         
-        
-        /*
-        //Print out the results
-        System.out.println("Your score was, \nwins: " + wins + "\nlosses: " + losses + "\nties: " + ties);
-        System.out.println("Thanks for playing!");
-        */
     }
     
     static int opponentMove(){
@@ -143,8 +110,6 @@ public class Roshambo extends RoshamboView{
         System.out.println("Your score is, \nwins: " + wins + "\nlosses: " + losses + "\nties: " + ties);
         
     }
-
-   
 
 }
     
