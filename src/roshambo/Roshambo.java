@@ -15,9 +15,7 @@ public class Roshambo extends RoshamboView {
     @Override
     public void start(Stage primaryStage) throws Exception { 
         
-        super.start(primaryStage);   
-        
-        primaryStage.setTitle("Roshambo");
+        super.start(primaryStage);
         
         RoshamboController p1 = new RoshamboController(); // Player 1
         RoshamboController p2 = new RoshamboController(); // Computer player
