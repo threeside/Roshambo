@@ -9,13 +9,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class RoshamboView extends Application {
-   
-    
-    protected static int myMove = 0;
-    public static int ties;
-    public static int wins;
-    public static int losses;
-    
+
     Button b1, b2, b3, b4;
     public static Label w, l, t, op, opm;
     //Image rock, paper, scissors;
@@ -27,19 +21,16 @@ public class RoshamboView extends Application {
     
     public RoshamboView() {
     
-        //Establish buttons and labels
         b1 = new Button("Rock");
         b2 = new Button("Paper");
         b3 = new Button("Scissors");
         b4 = new Button("Quit");
-
 
         w = new Label("Win: " + score.getP1_gameWins());
         l = new Label("Loss: " + score.getP1_gameLosses());
         t = new Label("Tie: " + score.getGameTies());
         op = new Label("Opponent Move: ");
         opm = new Label();   
-
 
         b1.setPrefSize(200, 100);
         b2.setPrefSize(200, 100);
@@ -55,12 +46,11 @@ public class RoshamboView extends Application {
     }
     
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         
         primaryStage.setTitle("Roshambo");
         GridPane grid = new GridPane();
 
-        //Set buttons and labels on the grid
         grid.add(b1, 0, 0);
         grid.add(b2, 0, 1);
         grid.add(b3, 1, 0);
@@ -71,8 +61,6 @@ public class RoshamboView extends Application {
         grid.add(l, 1, 2);
         grid.add(t, 2, 2);
         
-   
-        //Establish the scene which allows you to place buttons
         Scene scene = new Scene(grid, 600, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
