@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package roshambo;
 
 import javafx.application.Application;
@@ -13,10 +8,6 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-/**
- *
- * @author tjohn
- */
 public class RoshamboView extends Application {
    
     
@@ -27,7 +18,7 @@ public class RoshamboView extends Application {
     
     Button b1, b2, b3, b4;
     public static Label w, l, t, op, opm;
-    Image rock, paper, scissors;
+    //Image rock, paper, scissors;
     
     private static RoshamboController p1 = new RoshamboController();
     private static RoshamboController p2 = new RoshamboController();
@@ -36,31 +27,30 @@ public class RoshamboView extends Application {
     
     public RoshamboView() {
     
-    //Establish buttons and labels
-    b1 = new Button("Rock");
-    b2 = new Button("Paper");
-    b3 = new Button("Scissors");
-    b4 = new Button("Quit");
-    
-    
-    w = new Label("Win: " + score.getP1_gameWins());
-    l = new Label("Loss: " + score.getP1_gameLosses());
-    t = new Label("Tie: " + score.getGameTies());
-    op = new Label("Opponent Move: ");
-    opm = new Label();   
-    
-    
-    b1.setPrefSize(200, 100);
-    b2.setPrefSize(200, 100);
-    b3.setPrefSize(200, 100);
-    b4.setPrefSize(200, 100);
-    
-    w.setPrefSize(200, 100);
-    l.setPrefSize(200, 100);
-    t.setPrefSize(200, 100);
-    op.setPrefSize(200, 100);
-    opm.setPrefSize(200, 100);
-    
+        //Establish buttons and labels
+        b1 = new Button("Rock");
+        b2 = new Button("Paper");
+        b3 = new Button("Scissors");
+        b4 = new Button("Quit");
+
+
+        w = new Label("Win: " + score.getP1_gameWins());
+        l = new Label("Loss: " + score.getP1_gameLosses());
+        t = new Label("Tie: " + score.getGameTies());
+        op = new Label("Opponent Move: ");
+        opm = new Label();   
+
+
+        b1.setPrefSize(200, 100);
+        b2.setPrefSize(200, 100);
+        b3.setPrefSize(200, 100);
+        b4.setPrefSize(200, 100);
+
+        w.setPrefSize(200, 100);
+        l.setPrefSize(200, 100);
+        t.setPrefSize(200, 100);
+        op.setPrefSize(200, 100);
+        opm.setPrefSize(200, 100);
     
     }
     
@@ -86,9 +76,7 @@ public class RoshamboView extends Application {
         Scene scene = new Scene(grid, 600, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
+        
     }
-    
-    
-    
-   
+
 }
