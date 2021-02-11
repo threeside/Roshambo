@@ -1,25 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package roshambo;
-
-/**
- *
- * @author Daniel
- */
 
 public class RoshamboGame {
     
     private static final String[] RPS_MOVES = {"Rock", "Paper", "Scissors"};
 
-    RoshamboController p1, p2;
-    private int p1_gameWins, p1_gameLosses, p2_gameWins, p2_gameLosses, gameTies;
-    private int gameRound;
-    public int wins, losses, ties;
+    private RoshamboController p1, p2;
+    private int p1_gameWins, p1_gameLosses, p2_gameWins, p2_gameLosses, gameTies, gameRound;
     
-    /* intitalize game */
+    /**
+     * 
+     * @param p1 player 1 controller
+     * @param p2 player 2 controller
+     */
     public RoshamboGame(RoshamboController p1, RoshamboController p2) {
         this.p1 = p1;
         this.p2 = p2;
@@ -32,7 +24,12 @@ public class RoshamboGame {
         this.gameRound = 0;
     }
     
-    private static boolean isMoveValid(int moveId) {
+    /**
+     * Determines if whether the given move ID is valid
+     * @param moveId
+     * @return if whether the given move ID is valid
+     */
+    public static boolean isMoveValid(int moveId) {
         if (moveId < 0 || moveId >= RPS_MOVES.length) {
             return false;
         }
@@ -40,6 +37,10 @@ public class RoshamboGame {
         return true;
     }
     
+    /**
+     * Starts the roshambo battle
+     * @return if whether the battle was successful or not; will be unsuccessful if no move is given or if the move is invalid
+     */
     public boolean startBattle() {
         
         // start round if player moves are legal
@@ -80,7 +81,7 @@ public class RoshamboGame {
         
         ++gameTies;
         
-        System.out.println("You tied!");
+        //System.out.println("You tied!");
     }
     
     private void p1HasWon() {
@@ -90,7 +91,7 @@ public class RoshamboGame {
         ++p1_gameWins;
         ++p2_gameLosses;
         
-        System.out.println("You have won!");
+        //System.out.println("You have won!");
     }
     
     private void p2HasWon() {
@@ -100,9 +101,14 @@ public class RoshamboGame {
         ++p1_gameLosses;
         ++p2_gameWins;
         
-        System.out.println("You have lost!");
+        //System.out.println("You have lost!");
     }
     
+    /**
+     * Gets a move's name form its ID
+     * @param moveId
+     * @return String name of passed move ID; null if no such ID exists
+     */
     public static String getMoveNameFromId(int moveId) {
         if (isMoveValid(moveId)) return RPS_MOVES[moveId];
         
@@ -117,26 +123,51 @@ public class RoshamboGame {
         return p2;
     }
     
+     /**
+     * Gets number of Player 1's # of game wins
+     * @return Player 1's # of game wins
+     */
     public int getP1_gameWins() {
         return p1_gameWins;
     }
     
+    /**
+     * Gets number of Player 1's # of game losses
+     * @return Player 1's # of game losses
+     */
     public int getP1_gameLosses() {
         return p1_gameLosses;
     }
     
+    
+    /**
+     * Gets number of Player 2's # of game wins
+     * @return Player 2's # of game wins
+     */
     public int getP2_gameWins() {
         return p2_gameWins;
     }
     
+    /**
+     * Gets number of Player 2's # of game losses
+     * @return Player 2's # of game losses
+     */
     public int getP2_gameLosses() {
         return p2_gameLosses;
     }
     
+    /**
+     * Gets number of game ties
+     * @return number of game ties
+     */
     public int getGameTies() {
         return gameTies;
     }
     
+    /**
+     * Gets game's current round #
+     * @return game's current round #
+     */
     public int getGameRound() {
         return gameRound;
     }
