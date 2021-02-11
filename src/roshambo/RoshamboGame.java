@@ -109,6 +109,14 @@ public class RoshamboGame {
         else return null;
     }
     
+    public RoshamboController getP1() {
+        return p1;
+    }
+    
+    public RoshamboController getP2() {
+        return p2;
+    }
+    
     public int getP1_gameWins() {
         return p1_gameWins;
     }
