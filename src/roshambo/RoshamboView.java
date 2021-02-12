@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.text.*;
 import javafx.beans.binding.*;
-import javafx.geometry.*;
 
 public class RoshamboView extends Application {
     
@@ -17,7 +16,6 @@ public class RoshamboView extends Application {
     protected Text wins, losses, ties, opponentMove;
     
     private final Label winsLabel, lossesLabel, tiesLabel, oppoentMoveLabel;
-    //Image rock, paper, scissors;
     
     public RoshamboView() {
     
@@ -52,6 +50,7 @@ public class RoshamboView extends Application {
         primaryStage.setTitle("Roshambo");
         primaryStage.setMinWidth(330);
         primaryStage.setMinHeight(160);
+        
         
         
         /* Outer Grids - Grids to hold all content */
