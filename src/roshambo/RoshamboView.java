@@ -3,65 +3,147 @@ package roshambo;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
+import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.text.*;
+import javafx.beans.binding.*;
+import javafx.geometry.*;
 
 public class RoshamboView extends Application {
-
-    Button b1, b2, b3, b4;
-    public static Label w, l, t, op, opm;
-    //Image rock, paper, scissors;
     
-    private static RoshamboController p1 = new RoshamboController();
-    private static RoshamboController p2 = new RoshamboController();
-    public static RoshamboGame score = new RoshamboGame(p1, p2);
-  
+    protected Button b1, b2, b3, b4;
+    protected Text wins, losses, ties, opponentMove;
+    
+    private final Label winsLabel, lossesLabel, tiesLabel, oppoentMoveLabel;
+    //Image rock, paper, scissors;
     
     public RoshamboView() {
     
         b1 = new Button("Rock");
+        b1.setGraphic(new ImageView(new Image("Images/PlayerRock.png")));
+        
         b2 = new Button("Paper");
+        b2.setGraphic(new ImageView(new Image("Images/PlayerPaper.png")));
+        
         b3 = new Button("Scissors");
+        b3.setGraphic(new ImageView(new Image("Images/PlayerScissors.png")));
+        
         b4 = new Button("Quit");
+        b4.setGraphic(new ImageView(new Image("Images/Exit.png")));
+        
+        wins = new Text();
+        losses = new Text();
+        ties = new Text();
+        opponentMove = new Text();
 
-        w = new Label("Win: " + score.getP1_gameWins());
-        l = new Label("Loss: " + score.getP1_gameLosses());
-        t = new Label("Tie: " + score.getGameTies());
-        op = new Label("Opponent Move: ");
-        opm = new Label();   
-
-        b1.setPrefSize(200, 100);
-        b2.setPrefSize(200, 100);
-        b3.setPrefSize(200, 100);
-        b4.setPrefSize(200, 100);
-
-        w.setPrefSize(200, 100);
-        l.setPrefSize(200, 100);
-        t.setPrefSize(200, 100);
-        op.setPrefSize(200, 100);
-        opm.setPrefSize(200, 100);
-    
+        winsLabel = new Label("Wins: ");
+        lossesLabel = new Label("Losses: ");
+        tiesLabel = new Label("Ties: ");
+        oppoentMoveLabel = new Label("   Opponent Move: ");
+        
     }
     
     @Override
     public void start(Stage primaryStage) throws Exception {
         
+        /* Set game stage */
         primaryStage.setTitle("Roshambo");
-        GridPane grid = new GridPane();
-
-        grid.add(b1, 0, 0);
-        grid.add(b2, 0, 1);
-        grid.add(b3, 1, 0);
-        grid.add(b4, 1, 1);
-        grid.add(op, 2, 0);
-        grid.add(opm, 2, 1);
-        grid.add(w, 0, 2);
-        grid.add(l, 1, 2);
-        grid.add(t, 2, 2);
+        primaryStage.setMinWidth(330);
+        primaryStage.setMinHeight(160);
         
-        Scene scene = new Scene(grid, 600, 300);
+        
+        /* Outer Grids - Grids to hold all content */
+        
+        // create grids to hold each content group
+        GridPane moveButtonGrid = new GridPane();
+        GridPane scoreInfoGrid = new GridPane();
+        GridPane oponentMoveGrid = new GridPane();
+        
+        // determine grid dimensions
+        NumberBinding gridWidth = Bindings.divide(primaryStage.widthProperty(), 2);
+        NumberBinding gridHeight = Bindings.divide(primaryStage.heightProperty(), 2);
+        
+        // set grid dimensions
+        moveButtonGrid.prefWidthProperty().bind(gridWidth);
+        moveButtonGrid.prefHeightProperty().bind(gridHeight);
+        
+        scoreInfoGrid.prefWidthProperty().bind(gridWidth);
+        scoreInfoGrid.prefHeightProperty().bind(gridHeight);
+        
+        oponentMoveGrid.prefWidthProperty().bind(gridWidth);
+        oponentMoveGrid.prefHeightProperty().bind(gridHeight);
+        
+        
+        
+        /* Buttons */
+        
+        // Determine button dimensions
+        NumberBinding buttonWidth = Bindings.divide(moveButtonGrid.widthProperty(), 2);
+        NumberBinding buttonHeight = Bindings.divide(moveButtonGrid.heightProperty(), 2);
+        
+        // Set button dimensions and positions
+        b1.prefWidthProperty().bind(buttonWidth);
+        b1.prefHeightProperty().bind(buttonHeight);
+        moveButtonGrid.add(b1, 0, 0);
+        
+        b2.prefWidthProperty().bind(buttonWidth);
+        b2.prefHeightProperty().bind(buttonHeight);
+        moveButtonGrid.add(b2, 0, 1);
+        
+        b3.prefWidthProperty().bind(buttonWidth);
+        b3.prefHeightProperty().bind(buttonHeight);
+        moveButtonGrid.add(b3, 1, 0);
+        
+        b4.prefWidthProperty().bind(buttonWidth);
+        b4.prefHeightProperty().bind(buttonHeight);
+        moveButtonGrid.add(b4, 1, 1);
+        
+        
+
+        /* Score info */
+        
+        // Create grid to hold each result type
+        GridPane winsGrid = new GridPane();
+        GridPane lossesGrid = new GridPane();
+        GridPane tiesGrid = new GridPane();
+        
+        // Determine grid widths
+        NumberBinding scoreInfoCellWidth = Bindings.divide(primaryStage.widthProperty(), 3);
+        
+        // Set score info dimensions and positions
+        winsGrid.prefWidthProperty().bind(scoreInfoCellWidth);
+        winsGrid.add(winsLabel, 0, 0);
+        winsGrid.add(wins, 1, 0);
+        scoreInfoGrid.add(winsGrid, 0, 0);
+        
+        tiesGrid.prefWidthProperty().bind(scoreInfoCellWidth);
+        tiesGrid.add(tiesLabel, 0, 0);
+        tiesGrid.add(ties, 1, 0);
+        scoreInfoGrid.add(tiesGrid, 1, 0);
+        
+        lossesGrid.prefWidthProperty().bind(scoreInfoCellWidth);
+        lossesGrid.add(lossesLabel, 0, 0);
+        lossesGrid.add(losses, 1, 0);
+        scoreInfoGrid.add(lossesGrid, 2, 0);
+        
+        
+        
+        /* Opponent move info */
+        
+        oponentMoveGrid.add(oppoentMoveLabel, 0, 0);
+        oponentMoveGrid.add(opponentMove, 1, 1);
+        
+        
+        
+        // Create main grid, add grids to main grid
+        GridPane mainGrid = new GridPane();
+        mainGrid.add(moveButtonGrid, 0, 0);
+        mainGrid.add(scoreInfoGrid, 0, 1);
+        mainGrid.add(oponentMoveGrid, 1, 0);
+        
+        Scene scene = new Scene(mainGrid, 650, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
         
