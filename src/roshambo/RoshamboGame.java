@@ -41,7 +41,7 @@ public class RoshamboGame {
      * Starts the roshambo battle
      * @return if whether the battle was successful or not; will be unsuccessful if no move is given or if the move is invalid
      */
-    public boolean startBattle() {
+    public boolean doBattle() {
         
         // start round if player moves are legal
         if (isMoveValid(p1.getCurrentMove()) && isMoveValid( p2.getCurrentMove())) {

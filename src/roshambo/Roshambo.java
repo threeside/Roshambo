@@ -89,7 +89,7 @@ public class Roshambo extends RoshamboView {
         game.getP1().setMove(p1Move);
         game.getP2().setMove(p2Move);
         
-        game.startBattle();
+        game.doBattle();
        
         // Score/status displays
         wins.setText( String.valueOf(game.getP1_gameWins()) );
