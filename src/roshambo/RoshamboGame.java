@@ -2,7 +2,7 @@ package roshambo;
 
 public class RoshamboGame {
     
-    private static final String[] RPS_MOVES = {"Rock", "Paper", "Scissors"};
+    public static final String[] RPS_MOVES = {"Rock", "Paper", "Scissors"};
 
     private RoshamboController p1, p2;
     private int p1_gameWins, p1_gameLosses, p2_gameWins, p2_gameLosses, gameTies, gameRound;

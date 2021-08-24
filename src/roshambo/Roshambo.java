@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import java.util.*;
+import static roshambo.RoshamboGame.RPS_MOVES;
 
 public class Roshambo extends RoshamboView {
     
@@ -65,7 +66,7 @@ public class Roshambo extends RoshamboView {
      * @return generated move ID
      */
     public static int randomMove() {
-        return (new Random(System.currentTimeMillis()).nextInt(3));
+        return (new Random(System.currentTimeMillis()).nextInt(RoshamboGame.RPS_MOVES.length));
     }
     
     /**
