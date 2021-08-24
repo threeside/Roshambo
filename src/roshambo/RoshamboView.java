@@ -1,6 +1,7 @@
 package roshambo;
 
 import javafx.application.Application;
+import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
@@ -51,8 +52,8 @@ public class RoshamboView extends Application {
         /* Outer Grids - Grids to hold all content */
         
         // create grids to hold each content group
-        GridPane moveButtonGrid = new GridPane();
         GridPane scoreInfoGrid = new GridPane();
+        GridPane moveButtonGrid = new GridPane();
         GridPane oponentMoveGrid = new GridPane();
         
         // determine grid dimensions
@@ -60,15 +61,18 @@ public class RoshamboView extends Application {
         NumberBinding gridHeight = Bindings.divide(primaryStage.heightProperty(), 2);
         
         // set grid dimensions
-        moveButtonGrid.prefWidthProperty().bind(gridWidth);
-        moveButtonGrid.prefHeightProperty().bind(gridHeight);
         
         scoreInfoGrid.prefWidthProperty().bind(gridWidth);
-        scoreInfoGrid.prefHeightProperty().bind(gridHeight);
+        
+        moveButtonGrid.prefWidthProperty().bind(gridWidth);
+        moveButtonGrid.prefHeightProperty().bind(gridHeight);
         
         oponentMoveGrid.prefWidthProperty().bind(gridWidth);
         oponentMoveGrid.prefHeightProperty().bind(gridHeight);
         
+        
+        /* Generic separator object */
+        Separator genericSeparator = new Separator(Orientation.HORIZONTAL);
         
         
         /* Buttons */
@@ -104,7 +108,7 @@ public class RoshamboView extends Application {
         GridPane tiesGrid = new GridPane();
         
         // Determine grid widths
-        NumberBinding scoreInfoCellWidth = Bindings.divide(primaryStage.widthProperty(), 3);
+        NumberBinding scoreInfoCellWidth = Bindings.divide(primaryStage.widthProperty(), 6);
         
         // Set score info dimensions and positions
         winsGrid.prefWidthProperty().bind(scoreInfoCellWidth);
@@ -131,11 +135,14 @@ public class RoshamboView extends Application {
         
         
         
-        // Create main grid, add grids to main grid
+        // Create main grid, set padding/margins, and add grids to main grid
         GridPane mainGrid = new GridPane();
-        mainGrid.add(moveButtonGrid, 0, 0);
-        mainGrid.add(scoreInfoGrid, 0, 1);
-        mainGrid.add(oponentMoveGrid, 1, 0);
+        mainGrid.setPadding(new Insets(10, 10, 10, 10));
+        mainGrid.setVgap(10);
+        mainGrid.add(scoreInfoGrid, 0, 0, 2, 1);
+        mainGrid.add(genericSeparator, 0, 1, 2, 1);
+        mainGrid.add(moveButtonGrid, 0, 2);
+        mainGrid.add(oponentMoveGrid, 1, 2);
         
         Scene scene = new Scene(mainGrid, 650, 300);
         primaryStage.setScene(scene);
