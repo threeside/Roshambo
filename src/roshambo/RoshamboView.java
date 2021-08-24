@@ -3,7 +3,6 @@ package roshambo;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -20,16 +19,12 @@ public class RoshamboView extends Application {
     public RoshamboView() {
     
         b1 = new Button("Rock");
-        b1.setGraphic(new ImageView(new Image("Images/PlayerRock.png")));
         
         b2 = new Button("Paper");
-        b2.setGraphic(new ImageView(new Image("Images/PlayerPaper.png")));
         
         b3 = new Button("Scissors");
-        b3.setGraphic(new ImageView(new Image("Images/PlayerScissors.png")));
         
         b4 = new Button("Quit");
-        b4.setGraphic(new ImageView(new Image("Images/Exit.png")));
         
         wins = new Text();
         losses = new Text();
