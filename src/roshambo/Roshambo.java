@@ -21,6 +21,12 @@ public class Roshambo extends RoshamboView {
         RoshamboController p1 = new RoshamboController(); // Player 1
         RoshamboController p2 = new RoshamboController(); // Computer player
         
+        initGame(p1, p2);
+      
+    }
+    
+    protected void initGame(RoshamboController p1, RoshamboController p2) {
+        
         RoshamboGame game = new RoshamboGame (p1, p2);
         
         EventHandler<ActionEvent> rock = new EventHandler<ActionEvent>() {
@@ -46,20 +52,13 @@ public class Roshambo extends RoshamboView {
                 battle(game, 2);
             }
         };
-        
-        EventHandler<ActionEvent> quit = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent E) {
-                System.exit(0); 
-            }
-        };
           
         b1.setOnAction(rock);
         b2.setOnAction(paper);
         b3.setOnAction(scissors);
-        b4.setOnAction(quit);
-      
+        
     }
+    
     
     /**
      * Randomly generates a roshambo move
