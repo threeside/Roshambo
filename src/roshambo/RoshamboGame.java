@@ -16,10 +16,10 @@ public class RoshamboGame {
         this.p1 = p1;
         this.p2 = p2;
         
-        this.p1_gameWins = 0;
-        this.p1_gameLosses = 0;
-        this.p2_gameWins = 0;
-        this.p2_gameLosses = 0;
+        this.p1_gameWins = p1.getTotalWins();
+        this.p1_gameLosses = p1.getTotalLosses();
+        this.p2_gameWins = p2.getTotalWins();
+        this.p2_gameLosses = p2.getTotalLosses();
         this.gameTies = 0;
         this.gameRound = 0;
     }

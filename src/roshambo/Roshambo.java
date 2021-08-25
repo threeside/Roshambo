@@ -52,13 +52,48 @@ public class Roshambo extends RoshamboView {
                 battle(game, 2);
             }
         };
+        
+        EventHandler<ActionEvent> reset = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent E){
+                //System.out.println("Your move: scissors");
+                resetGame(p1);
+            }
+        };
           
         b1.setOnAction(rock);
         b2.setOnAction(paper);
         b3.setOnAction(scissors);
+        b4.setOnAction(reset);
         
     }
     
+    /**
+     * Resets game state
+     */
+    protected void resetGame() {
+        wins.setText( String.valueOf(0) );
+        ties.setText( String.valueOf(0) );
+        losses.setText( String.valueOf(0) );
+        opponentMove.setText(null);
+        
+        RoshamboController p1 = new RoshamboController(); // Player 1
+        RoshamboController p2 = new RoshamboController(); // Computer player
+        
+        initGame(p1, p2);
+    }
+    
+    /**
+     * Resets game state, but with the passed player as Player 1
+     */
+    protected void resetGame(RoshamboController preservedPlayer) {
+        ties.setText( String.valueOf(0) );
+        opponentMove.setText(null);
+        
+        RoshamboController p2 = new RoshamboController(); // Computer player
+        
+        initGame(preservedPlayer, p2);
+    }
     
     /**
      * Randomly generates a roshambo move
@@ -94,7 +129,7 @@ public class Roshambo extends RoshamboView {
         // Score/status displays
         wins.setText( String.valueOf(game.getP1_gameWins()) );
         ties.setText( String.valueOf(game.getGameTies()) );
-        losses.setText( String.valueOf(game.getP2_gameWins()) );
+        losses.setText( String.valueOf(game.getP1_gameLosses()) );
         opponentMove.setText(RoshamboGame.getMoveNameFromId(p2Move));
         
         // System.out.println("Opponent move: " + RoshamboGame.getMoveNameFromId(AI_Move));

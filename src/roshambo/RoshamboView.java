@@ -25,7 +25,7 @@ public class RoshamboView extends Application {
         
         b3 = new Button("Scissors");
         
-        b4 = new Button("Quit");
+        b4 = new Button("Reset");
         
         wins = new Text();
         losses = new Text();
@@ -94,9 +94,9 @@ public class RoshamboView extends Application {
         b3.prefHeightProperty().bind(buttonHeight);
         moveButtonGrid.add(b3, 1, 0);
         
-        /*b4.prefWidthProperty().bind(buttonWidth);
+        b4.prefWidthProperty().bind(buttonWidth);
         b4.prefHeightProperty().bind(buttonHeight);
-        moveButtonGrid.add(b4, 1, 1);*/
+        moveButtonGrid.add(b4, 1, 1);
         
         
 
