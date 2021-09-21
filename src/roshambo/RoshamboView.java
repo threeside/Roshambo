@@ -15,16 +15,12 @@ public class RoshamboView extends Application {
     protected Button b1, b2, b3, b4;
     protected Text wins, losses, ties, opponentMove;
     
-    private final Label winsLabel, lossesLabel, tiesLabel, oppoentMoveLabel;
+    private final Label winsLabel, lossesLabel, tiesLabel, opponentMoveLabel;
     
     public RoshamboView() {
-    
         b1 = new Button("Rock");
-        
         b2 = new Button("Paper");
-        
         b3 = new Button("Scissors");
-        
         b4 = new Button("Reset");
         
         wins = new Text();
@@ -35,20 +31,19 @@ public class RoshamboView extends Application {
         winsLabel = new Label("Wins: ");
         lossesLabel = new Label("Losses: ");
         tiesLabel = new Label("Ties: ");
-        oppoentMoveLabel = new Label("   Opponent Move: ");
-        
+        opponentMoveLabel = new Label("   Opponent Move: ");
     }
     
     @Override
     public void start(Stage primaryStage) throws Exception {
         
-        /* Set game stage */
+        /*** Set game stage ***/
         primaryStage.setTitle("Roshambo");
         primaryStage.setMinWidth(330);
         primaryStage.setMinHeight(160);
         
         
-        /* Outer Grids - Grids to hold all content */
+        /*** Outer Grids - Grids to hold all content ***/
         
         // create grids to hold each content group
         GridPane scoreInfoGrid = new GridPane();
@@ -70,11 +65,11 @@ public class RoshamboView extends Application {
         oponentMoveGrid.prefHeightProperty().bind(gridHeight);
         
         
-        /* Generic separator object */
+        /*** Generic separator object ***/
         Separator genericSeparator = new Separator(Orientation.HORIZONTAL);
         
         
-        /* Buttons */
+        /*** Buttons ***/
         
         // Determine button dimensions
         NumberBinding buttonWidth = Bindings.divide(moveButtonGrid.widthProperty(), 2);
@@ -98,7 +93,7 @@ public class RoshamboView extends Application {
         moveButtonGrid.add(b4, 1, 1);
         
         
-        /* Score info */
+        /*** Score info ***/
         
         // Create grid to hold each result type
         GridPane winsGrid = new GridPane();
@@ -125,13 +120,13 @@ public class RoshamboView extends Application {
         scoreInfoGrid.add(lossesGrid, 2, 0);
         
         
-        /* Opponent move info */
-        
-        oponentMoveGrid.add(oppoentMoveLabel, 0, 0);
+        /*** Opponent move info ***/
+        oponentMoveGrid.add(opponentMoveLabel, 0, 0);
         oponentMoveGrid.add(opponentMove, 1, 1);
         
         
-        // Create main grid, set padding/margins, and add grids to main grid
+        /*** Assemble main grid, insert elements, and create scene ***/
+        
         GridPane mainGrid = new GridPane();
         mainGrid.setPadding(new Insets(10, 10, 10, 10));
         mainGrid.setVgap(10);
@@ -143,7 +138,6 @@ public class RoshamboView extends Application {
         Scene scene = new Scene(mainGrid, 650, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
-        
     }
 
 }

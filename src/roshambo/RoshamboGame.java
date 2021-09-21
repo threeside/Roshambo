@@ -42,9 +42,8 @@ public class RoshamboGame {
      * @return if whether the battle was successful or not; will be unsuccessful if no move is given or if the move is invalid
      */
     public boolean doBattle() {
-        
         // start round if player moves are legal
-        if (isMoveValid(p1.getCurrentMove()) && isMoveValid( p2.getCurrentMove())) {
+        if (isMoveValid(p1.getCurrentMove()) && isMoveValid(p2.getCurrentMove())) {
         
             // is it a tie?
             if (p1.getCurrentMove() == p2.getCurrentMove()) {
@@ -70,9 +69,7 @@ public class RoshamboGame {
         }
         
         // round cannot commence - illegal player moves
-        else {
-            return false;
-        }
+        else return false;
     }
     
     private void roundIsTie() {
@@ -80,8 +77,6 @@ public class RoshamboGame {
         p2.acceptTie();
         
         ++gameTies;
-        
-        //System.out.println("You tied!");
     }
     
     private void p1HasWon() {
@@ -90,8 +85,6 @@ public class RoshamboGame {
         
         ++p1_gameWins;
         ++p2_gameLosses;
-        
-        //System.out.println("You have won!");
     }
     
     private void p2HasWon() {
@@ -100,19 +93,17 @@ public class RoshamboGame {
         
         ++p1_gameLosses;
         ++p2_gameWins;
-        
-        //System.out.println("You have lost!");
     }
     
     /**
      * Gets a move's name form its ID
      * @param moveId
-     * @return String name of passed move ID; null if no such ID exists
+     * @return String name of passed move ID; empty if no such ID exists
      */
     public static String getMoveNameFromId(int moveId) {
         if (isMoveValid(moveId)) return RPS_MOVES[moveId];
         
-        else return null;
+        else return "";
     }
     
     public RoshamboController getP1() {

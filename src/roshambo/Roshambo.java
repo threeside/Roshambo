@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import java.util.*;
-import static roshambo.RoshamboGame.RPS_MOVES;
 
 public class Roshambo extends RoshamboView {
     
@@ -26,13 +25,11 @@ public class Roshambo extends RoshamboView {
     }
     
     protected void initGame(RoshamboController p1, RoshamboController p2) {
-        
         RoshamboGame game = new RoshamboGame (p1, p2);
         
         EventHandler<ActionEvent> rock = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent E){
-                //System.out.println("Your move: rock");
                 battle(game, 0);
             }
         };
@@ -40,7 +37,6 @@ public class Roshambo extends RoshamboView {
         EventHandler<ActionEvent> paper = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent E){
-                //System.out.println("Your move: paper");
                 battle(game, 1);
             }
         };
@@ -48,7 +44,6 @@ public class Roshambo extends RoshamboView {
         EventHandler<ActionEvent> scissors = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent E){
-                //System.out.println("Your move: scissors");
                 battle(game, 2);
             }
         };
@@ -56,7 +51,6 @@ public class Roshambo extends RoshamboView {
         EventHandler<ActionEvent> reset = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent E){
-                //System.out.println("Your move: scissors");
                 resetGame(p1);
             }
         };
@@ -65,7 +59,6 @@ public class Roshambo extends RoshamboView {
         b2.setOnAction(paper);
         b3.setOnAction(scissors);
         b4.setOnAction(reset);
-        
     }
     
     /**
@@ -85,6 +78,7 @@ public class Roshambo extends RoshamboView {
     
     /**
      * Resets game state, but with the passed player as Player 1
+     * @param preservedPlayer Player object to utilize as Player 1 in the next game
      */
     protected void resetGame(RoshamboController preservedPlayer) {
         ties.setText( String.valueOf(0) );
@@ -96,7 +90,7 @@ public class Roshambo extends RoshamboView {
     }
     
     /**
-     * Randomly generates a roshambo move
+     * Generates random Roshambo move
      * @return generated move ID
      */
     public static int randomMove() {
@@ -104,7 +98,7 @@ public class Roshambo extends RoshamboView {
     }
     
     /**
-     * Starts battle from a game and P1 move against an AI
+     * Starts battle from a game and P1 move; pits P1 move against an AI move
      * @param game
      * @param p1Move 
      */
@@ -113,13 +107,12 @@ public class Roshambo extends RoshamboView {
     }
     
     /**
-     * Starts battle from game, P1 move, and P2 movie
+     * Starts battle from a game, P1 move, and P2 move
      * @param game
      * @param p1Move
      * @param p2Move 
      */
     protected void battle(RoshamboGame game, int p1Move, int p2Move) {
-       
         // Set player and opponents moves
         game.getP1().setMove(p1Move);
         game.getP2().setMove(p2Move);
@@ -131,9 +124,6 @@ public class Roshambo extends RoshamboView {
         ties.setText( String.valueOf(game.getGameTies()) );
         losses.setText( String.valueOf(game.getP1_gameLosses()) );
         opponentMove.setText(RoshamboGame.getMoveNameFromId(p2Move));
-        
-        // System.out.println("Opponent move: " + RoshamboGame.getMoveNameFromId(AI_Move));
-        // System.out.println("Your score is, \nwins: " + wins + "\nlosses: " + losses + "\nties: " + ties);
     }
 
 }
