@@ -48,7 +48,6 @@ public class RoshamboView extends Application {
         primaryStage.setMinHeight(160);
         
         
-        
         /* Outer Grids - Grids to hold all content */
         
         // create grids to hold each content group
@@ -99,7 +98,6 @@ public class RoshamboView extends Application {
         moveButtonGrid.add(b4, 1, 1);
         
         
-
         /* Score info */
         
         // Create grid to hold each result type
@@ -127,12 +125,10 @@ public class RoshamboView extends Application {
         scoreInfoGrid.add(lossesGrid, 2, 0);
         
         
-        
         /* Opponent move info */
         
         oponentMoveGrid.add(oppoentMoveLabel, 0, 0);
         oponentMoveGrid.add(opponentMove, 1, 1);
-        
         
         
         // Create main grid, set padding/margins, and add grids to main grid
